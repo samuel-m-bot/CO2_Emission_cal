@@ -1,12 +1,9 @@
 
 <?php
+ob_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-echo "Working heder";
-
 require 'vendor/autoload.php';
-echo "Working heder";
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 echo "Working include";
@@ -68,6 +65,6 @@ for ($row = 69; $row <= 75; $row++) {
 $jsonBreakdownData = json_encode($breakdownData);
 // Display the result
 header("Location: result.php?result={$result}&jsonBreakdownData={$jsonBreakdownData}");
+ob_end_flush();
 exit;
-echo "\nCode working";
 ?>
