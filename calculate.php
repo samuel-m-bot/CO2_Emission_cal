@@ -72,4 +72,5 @@ $jsonBreakdownData = json_encode($breakdownData);
 // Display the result
 header("Location: result.php?result={$result}&jsonBreakdownData={$jsonBreakdownData}");
 exit;
+echo "\nCode working";
 ?>
