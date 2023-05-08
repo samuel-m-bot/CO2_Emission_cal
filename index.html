@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO2 Emission Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <section class="header">
+        <h1>CO2 Emission Calculator</h1>
+        <div class="curve"></div>
+    </section>
+    <div class="spacer layer1"></div>
+    <section class="light">
+        <div class="container">
+            <form action="calculate.php" method="post">
+                <h3>'Procurement' Activity Data</h3>
+                <div class="input-group">
+                    <label for="aircraft">Aircraft (Miles):</label>
+                    <input type="number" name="aircraft" id="aircraft" step="any" required>
+                    <label for="Passenger_Car">Passenger Car (Miles):</label>
+                    <input type="number" name="Passenger_Car" id="Passenger_Car" step="any" required>
+                    <label for="Light_Duty_Truck">Light Duty Truck (Miles):</label>
+                    <input type="number" name="Light_Duty_Truck" id="Light_Duty_Truck" step="any" required>
+                    <label for="Medium_Heavy_Duty_Truck">Medium & Heavy Duty Truck (Miles):</label>
+                    <input type="number" name="Medium_Heavy_Duty_Truck" id="Medium_Heavy_Duty_Truck" step="any" required>
+                    <label for="Rail">Rail (Miles):</label>
+                    <input type="number" name="Rail" id="Rail" step="any" required>
+                    <label for="Waterborne_Truck">Waterborne Truck (Miles):</label>
+                    <input type="number" name="Waterborne_Truck" id="Waterborne_Truck" step="any" required>
+                </div>
+                <!-- Add other fields similarly -->
+                <h3>'Outbound Shipping' Activity Data</h3>
+                <div class="input-group">
+                    <label for="os_aircraft">Aircraft (Miles):</label>
+                    <input type="number" name="os_aircraft" id="os_aircraft" step="any" required>
+                    <label for="os_Passenger_Car">Passenger Car (Miles):</label>
+                    <input type="number" name="os_Passenger_Car" id="os_Passenger_Car" step="any" required>
+                    <label for="os_Light_Duty_Truck">Light Duty Truck (Miles):</label>
+                    <input type="number" name="os_Light_Duty_Truck" id="Light_Duty_Truck" step="any" required>
+                    <label for="os_Medium_Heavy_Duty_Truck">Medium & Heavy Duty Truck (Miles):</label>
+                    <input type="number" name="os_Medium_Heavy_Duty_Truck" id="os_Medium_Heavy_Duty_Truck" step="any" required>
+                    <label for="os_Rail">Rail (Miles):</label>
+                    <input type="number" name="os_Rail" id="os_Rail" step="any" required>
+                    <label for="os_Waterborne_Truck">Waterborne Truck (Miles):</label>
+                    <input type="number" name="os_Waterborne_Truck" id="os_Waterborne_Truck" step="any" required>
+                </div>
+                <!-- Add other fields similarly -->
+                <h3>'Energy Usage' Activity Data</h3>
+                <div class="input-group">
+                    <label for="electricity">Electricity (kwh):</label>
+                    <input type="number" name="electricity" id="electricity" step="any" required>
+                    <label for="water">Water (m^3):</label>
+                    <input type="number" name="water" id="water" step="any" required>
+                </div>
+                <!-- Add other fields similarly -->
+                <h3>'Staff Travel' Activity Data</h3>
+                <div class="input-group">
+                    <label for="st_car">Car (Miles):</label>
+                    <input type="number" name="st_car" id="st_car" step="any" required>
+                    <label for="st_bus">Bus (Miles):</label>
+                    <input type="number" name="st_bus" id="st_bus" step="any" required>
+                    <label for="st_walk">Walk (Miles):</label>
+                    <input type="number" name="st_walk" id="st_walk" step="any" required>
+                    <label for="st_cycle">Cycle (Miles):</label>
+                    <input type="number" name="st_cycle" id="st_cycle" step="any" required>
+                </div>
+                <!-- Add other fields similarly -->
+                <h3>'Patient Travel' Activity Data</h3>
+                <div class="input-group">
+                    <label for="pt_car">Car (Miles):</label>
+                    <input type="number" name="pt_car" id="pt_car" step="any" required>
+                    <label for="pt_bus">Bus (Miles):</label>
+                    <input type="number" name="pt_bus" id="pt_bus" step="any" required>
+                    <label for="pt_walk">Walk (Miles):</label>
+                    <input type="number" name="pt_walk" id="pt_walk" step="any" required>
+                    <label for="pt_cycle">Cycle (Miles):</label>
+                    <input type="number" name="pt_cycle" id="pt_cycle" step="any" required>
+                </div>
+                <!-- Add other fields similarly -->
+                <h3>'Waste' Activity Data</h3>
+                <div class="input-group">
+                    <label for="clinical_waste">Clinical Waste (Kg):</label>
+                    <input type="number" name="clinical_waste" id="clinical_waste" step="any" required>
+                    <label for="domestic_waste">Domestic Waste (Kg):</label>
+                    <input type="number" name="domestic_waste" id="domestic_waste" step="any" required>
+                    <label for="special_waste">Special Waste (Amalgam) :</label>
+                    <input type="number" name="special_waste" id="special_waste" step="any" required>
+                </div>
+                <!-- Add other fields similarly -->
+                <br><br>
+                <input type="submit" value="Calculate CO2 Emissions">
+            </form>
+            <script>
+                // Parse the JSON data from PHP
+                const breakdownData = JSON.parse('<?php echo $jsonBreakdownData; ?>');
+            
+                // Create a pie chart using Chart.js
+                const ctx = document.getElementById('carbonFootprintChart').getContext('2d');
+                const pieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: [
+                            'Procurement',
+                            'Outbound Shipping',
+                            'Energy Usage',
+                            'Staff Travel',
+                            'Patient Travel',
+                            'Waste',
+                            'Other'
+                        ],
+                        datasets: [
+                            {
+                                data: breakdownData,
+                                backgroundColor: [
+                                    '#FF6384',
+                                    '#36A2EB',
+                                    '#FFCE56',
+                                    '#4BC0C0',
+                                    '#9966FF',
+                                    '#FF9F40',
+                                    '#E7E9ED'
+                                ]
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Carbon Footprint Breakdown',
+                                font: {
+                                    size: 20
+                                }
+                            },
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            </script>
+        </div>
+    </section>
+</body>
+</html>
