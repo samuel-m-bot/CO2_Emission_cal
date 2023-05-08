@@ -110,19 +110,19 @@ ctx.canvas.onclick = (event) => {
         window.location.href = 'index.html';
         break;
       case 'Outbound Shipping':
-        window.location.href = 'outbound_shipping.html';
+        window.location.href = 'index.html';
         break;
       case 'Energy Usage':
-        window.location.href = 'energy_usage.html';
+        window.location.href = 'index.html';
         break;
       case 'Staff Travel':
-        window.location.href = 'staff_travel.html';
+        window.location.href = 'index.html';
         break;
       case 'Patient Travel':
-        window.location.href = 'patient_travel.html';
+        window.location.href = 'index.html';
         break;
       case 'Waste Management':
-        window.location.href = 'waste_management.html';
+        window.location.href = 'index.html';
         break;
     }
   }
