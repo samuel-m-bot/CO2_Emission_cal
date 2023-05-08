@@ -24,16 +24,13 @@ jobs:
         with:
           api-key: ${{ secrets.IONOS_API_KEY }}
           service-host: api-eu.ionos.space
-          project-id: 3eafc34e-6662-46c9-9b93-1d6f0da4cec5
+          project-id: cf3efaa2-99b1-4c97-8e5a-18dbecb79845
           action: retrieve-info
 
 
   build:
     name: build
     needs: retrieve-project
-    permissions:
-      contents: read
-      packages: write
     if: ${{ needs.retrieve-project.outputs.deployment-enabled == 'true' }}
     uses: ./.github/workflows/CO2_Emission_cal-build.yaml
     with:
@@ -53,6 +50,6 @@ jobs:
         with:
           api-key: ${{ secrets.IONOS_API_KEY }}
           service-host: api-eu.ionos.space
-          project-id: 3eafc34e-6662-46c9-9b93-1d6f0da4cec5
+          project-id: cf3efaa2-99b1-4c97-8e5a-18dbecb79845
           branch-id: ${{ needs.retrieve-project.outputs.branch-id }}
           action: dispatch-deployments
