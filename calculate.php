@@ -8,10 +8,10 @@ ini_set('display_startup_errors', 0);
 error_reporting(0);
 
 require 'vendor/autoload.php';
-
+echo "Working heder";
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
-
+echo "Working include";
 // Load the Excel file
 $spreadsheet = IOFactory::load("Clark House Dental Calculator Excel.xlsx");
 
