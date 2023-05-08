@@ -1,4 +1,3 @@
-
 <?php
 ob_start();
 error_reporting(E_ALL);
