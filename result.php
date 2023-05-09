@@ -7,6 +7,9 @@ error_reporting(0);
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
   <meta charset="utf-8">
   <title>CO2 Emissions Result</title>
   <!-- Include the Chart.js library -->
@@ -20,6 +23,9 @@ error_reporting(0);
     margin: 0;
     font-family: Arial, sans-serif;
     overflow-y: hidden;
+    /* background: #000c18; */
+    background: radial-gradient(circle, darkgrey, #000c18);
+    font-family: 'Oswald', sans-serif;
   }
   h1 {
     margin: 0;
@@ -27,12 +33,13 @@ error_reporting(0);
   }
   #container {
     padding: 30px;
-    height: 80vh;
+    padding-bottom: 50px;
+    height: 70vh;
     width: 70%;
     text-align: center;
     position: relative;
     border-radius: 2px;
-    background: lightgray;
+    background: white;
     border-color: #000c18;
     border-style: solid;
     display: flex;
