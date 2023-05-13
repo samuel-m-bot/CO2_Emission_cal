@@ -4,6 +4,12 @@ blockquote, body, dd, dl, figure, h1, h2, h3, h4, ol, p, ul {
 h1{
     font-size: 30px;
 }
+h2{
+    font-size: 20px;
+}
+.title,.names{
+    display: block;
+}
 body{
     margin: 0;
     padding: 0;
@@ -14,13 +20,14 @@ body{
     width: 100%;
     height: 30vh;
     display: flex;
+    flex-direction: column; /* Add this line */
     justify-content: center;
     align-items: center;
     overflow: hidden;
     background: #000c18;
     color: white;
-    font-size: 22px;
 }
+
 section .page_top{
     position: relative;
     z-index: 1;
